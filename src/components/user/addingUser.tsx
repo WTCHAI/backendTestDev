@@ -33,10 +33,6 @@ export default function AddingUser(){
     }
   };
 
-  const onLogsForm = (values : userFormType)=>{
-    console.log("form", values)
-  }
-
   return (
     <section className="">
       <Form form={form} onFinish={onFinishForm} className="flex flex-col gap-y-[2vh]">
