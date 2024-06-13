@@ -11,26 +11,6 @@ export default function AddingUser(){
 
   const onFinishForm = async (values: userFormType) => {
     console.log('Received values:', values);
-    try {
-      const response = await fetch('/api/user', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(values),
-      });
-
-      if (response.ok) {
-        message.success('User added successfully!');
-        form.resetFields();
-      } else {
-        const errorData = await response.json();
-        message.error(`Error: ${errorData.error}`);
-      }
-    } catch (error) {
-      console.error('Error adding user:', error);
-      message.error('Error adding user');
-    }
   };
 
   return (
