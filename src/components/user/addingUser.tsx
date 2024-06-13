@@ -10,8 +10,9 @@ export default function AddingUser(){
   const [form] = Form.useForm();
 
   const onFinishForm = async (values: userFormType) => {
+    console.log('Received values:', values);
     try {
-      const response = await fetch('/api/users', {
+      const response = await fetch('/api/user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
