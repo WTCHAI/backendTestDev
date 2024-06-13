@@ -15,9 +15,9 @@ export default async function Handler (req: NextApiRequest, res : NextApiRespons
                 studentId,
               },
             });
-            res.status(201).json(user);
+            res.status(200).json(user);
           } catch (error : any) {
-            res.status(500).json({ error: error?.message });
+            res.status(400).json({ error: error?.message });
           }
     }
     else if (req.method === "GET"){
@@ -25,7 +25,7 @@ export default async function Handler (req: NextApiRequest, res : NextApiRespons
             const users = await prisma.user.findMany();
             res.status(200).json(users);
           } catch (error : any) {
-            res.status(500).json({ error: error?.message });
+            res.status(400).json({ error: error?.message });
           }
     }
 }

@@ -1,11 +1,16 @@
-import Image from "next/image";
+import AddingUser from "@/components/user/addingUser";
+import UserRender from "@/components/user/gettingUser";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-slate-300">
-      <p>
-        Hello Eto
-      </p>
+    <main className="min-h-screen bg-slate-300">
+      <section className="flex flex-col justify-center items-center" >
+        <p>
+          Hello Eto nun eGo
+        </p>
+        <AddingUser/>
+        <UserRender/>        
+      </section>
     </main>
   );
 }

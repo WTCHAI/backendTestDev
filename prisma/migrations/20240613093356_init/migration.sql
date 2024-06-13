@@ -3,7 +3,7 @@ CREATE TABLE "User" (
     "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "name" TEXT,
-    "studentId" TEXT NOT NULL,
+    "studentId" TEXT,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
