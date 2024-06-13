@@ -19,7 +19,7 @@ export default async function handler(req : NextApiRequest, res : NextApiRespons
         }catch(err){
             return res.json({
                 message : 'Error getting users',
-                status : 500
+                status : 404
             })
             // res.status(500).json({error : 'Error getting users'})
         }
@@ -34,10 +34,15 @@ export default async function handler(req : NextApiRequest, res : NextApiRespons
                     studentId : payload.studentId
                 }
             })
+            return res.json({
+                data : response,
+                message : 'User added successfully',
+                status : 200
+            })
         }catch(err){
             return res.json({
                 message : 'Error adding user',
-                status : 500
+                status : 404
             })
         }
     }

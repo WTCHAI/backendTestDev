@@ -14,6 +14,6 @@ export interface User{
 
 export interface UserResponse{
     data ?: User
-    message : string
-    status : number
+    message ?: string
+    status ?: number
 }

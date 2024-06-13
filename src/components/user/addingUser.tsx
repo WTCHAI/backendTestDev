@@ -4,18 +4,32 @@ import React from 'react'
 import { Form, Input, Button, message } from 'antd';
 
 
-import { userFormType } from '@/interface/user';
+import { userFormType , UserResponse } from '@/interface/user';
 
 export default function AddingUser(){
   const [form] = Form.useForm();
 
   const onFinishForm = async (values: userFormType) => {
     console.log('Received values:', values);
-  };
+      const response : UserResponse = await fetch('/api/users/user', {
+        method: 'POST',
+        body: JSON.stringify(values),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      console.log(response)
+      if (response.status === 200) {  
+        message.success('User added successfully')    
+      }else if (response.status === 404){
+        message.error('Error adding user')
+
+      }
+  }
 
   return (
     <section className="">
-      <Form form={form} onFinish={onFinishForm} className="flex flex-col gap-y-[2vh]">
+      <Form form={form} onFinish={onFinishForm} className="flex flex-col gap-y-[2vh] ">
         <Form.Item
           name="name"
           label="Name"
