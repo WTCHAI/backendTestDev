@@ -37,9 +37,9 @@ export default function UserRender({}: Props) {
         users?.map((user) => {
           return (
             <div key={user.id}>
-              <p>{user.name}</p>
-              <p>{user.email}</p>
-              <p>{user.studentId}</p>
+              <p>Name  : {user.name}</p>
+              <p>Email : {user.email}</p>
+              <p>Password : {user.password}</p>
             </div>
           )
         })

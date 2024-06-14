@@ -10,7 +10,6 @@ export default function AddingUser(){
   const [form] = Form.useForm();
 
   const onFinishForm = async (values: userFormType) => {
-    console.log('Received values:', values);
       const response : UserResponse = await fetch('/api/users/user', {
         method: 'POST',
         body: JSON.stringify(values),
@@ -18,12 +17,11 @@ export default function AddingUser(){
           'Content-Type': 'application/json'
         }
       })
-      console.log(response)
-      if (response.status === 200) {  
+      if (response.status === 200) { 
+        form.resetFields()
         message.success('User added successfully')    
       }else if (response.status === 404){
         message.error('Error adding user')
-
       }
   }
 
