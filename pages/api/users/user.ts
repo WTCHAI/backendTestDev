@@ -4,13 +4,13 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 import { User, UserResponse } from "@/interface/user";
 
-const prisma = new PrismaClient();
+import { prismaDb } from "@/lib/db";
 
 export default async function handler(req : NextApiRequest, res : NextApiResponse) {
 
     if (req.method === 'GET'){
         try{
-            const response = await prisma.user.findMany()
+            const response = await prismaDb.user.findMany()
             return res.json({
                 data : response,
                 message : 'Users fetched successfully',
@@ -25,7 +25,7 @@ export default async function handler(req : NextApiRequest, res : NextApiRespons
     }else if (req.method === 'POST'){
         try{
             const payload : User = req.body
-            const response = await prisma.user.create({
+            const response = await prismaDb.user.create({
                 data : {
                     name : payload.name,
                     email : payload.email,
