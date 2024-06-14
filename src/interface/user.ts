@@ -13,7 +13,7 @@ export interface User{
 }
 
 export interface UserResponse{
-    data ?: User
+    data ?: User[]
     message ?: string
     status ?: number
 }

@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 
 import { NextApiRequest, NextApiResponse } from "next";
 
-import { User } from "@/interface/user";
+import { User, UserResponse } from "@/interface/user";
 
 const prisma = new PrismaClient();
 
@@ -21,7 +21,6 @@ export default async function handler(req : NextApiRequest, res : NextApiRespons
                 message : 'Error getting users',
                 status : 404
             })
-            // res.status(500).json({error : 'Error getting users'})
         }
     }else if (req.method === 'POST'){
         try{
