@@ -4,7 +4,7 @@ import React from 'react'
 import { Form, Input, Button, message } from 'antd';
 
 
-import { userFormType , UserResponse } from '@/interface/user';
+import { userFormType , UserResponse } from '@/interface/user'
 
 export default function AddingUser(){
   const [form] = Form.useForm();
