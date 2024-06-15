@@ -1,10 +1,11 @@
-import { PrismaClient } from "@prisma/client";
 
 import { NextApiRequest, NextApiResponse } from "next";
+import { prismaDb } from "@/lib/db";
+
+import bcrypt from 'bcrypt'
 
 import { User, UserResponse } from "@/interface/user";
 
-import { prismaDb } from "@/lib/db";
 
 export default async function handler(req : NextApiRequest, res : NextApiResponse) {
 
@@ -25,11 +26,13 @@ export default async function handler(req : NextApiRequest, res : NextApiRespons
     }else if (req.method === 'POST'){
         try{
             const payload : User = req.body
+
+            const encryptedPasswd = await bcrypt.hash(payload.password,Number(process.env.SALT_ROUNDS))
             const response = await prismaDb.user.create({
                 data : {
                     name : payload.name,
                     email : payload.email,
-                    password : payload.password,
+                    password : encryptedPasswd,
                     studentId : payload.studentId
                 }
             })

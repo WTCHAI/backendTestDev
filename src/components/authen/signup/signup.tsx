@@ -4,19 +4,39 @@ import React from 'react'
 
 import { Button, Form, Input } from 'antd'
 
-import { userFormType } from '@/interface/user'
+import { UserResponse, userFormType } from '@/interface/user'
 
 export default function SignIn() {
     const [form] = Form.useForm()
 
     const onFinish = async (values : userFormType)=>{
-        form.resetFields()
         console.log(values)
+        const response = await fetch('/api/auth/signup',{
+            method : "POST",
+            body: JSON.stringify(values),
+            headers: {
+              'Content-Type': 'application/json'
+            }
+        })
+        const result : UserResponse = await response.json()
+        if (result.status === 200 ){
+
+        }else if (response.status === 400){
+            
+        }
+        form.resetFields()
     }
 
     return (
-        <section>
-            <Form form={form} onFinish={onFinish} className="login-form">
+        <section className='h-screen flex items-center justify-center'>
+            <Form form={form} onFinish={onFinish} className="login-form flex flex-col items-center justify-center">
+                <Form.Item
+                    name="name"
+                    label="name"
+                    rules={[{ required: true, message: 'Please input a valid name!'}]}
+                >
+                    <Input />
+                </Form.Item>
                 <Form.Item
                     name="email"
                     label="Email"
